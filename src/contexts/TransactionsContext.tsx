@@ -8,7 +8,7 @@ interface Transaction {
   type: "income" | "outcome";
   price: number;
   category: string;
-  created_at: string;
+  createdAt: string;
 }
 
 interface CreateTransactionInput {
