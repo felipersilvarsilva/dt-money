@@ -54,7 +54,7 @@ export function TransactionsProvider({ children }: TransactionProviderProps) {
         price,
         category,
         type,
-        created_at: new Date(),
+        createdAt: new Date(),
       });
 
       setTransactions((state) => [response.data, ...state]);

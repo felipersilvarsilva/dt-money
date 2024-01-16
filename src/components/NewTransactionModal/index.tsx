@@ -10,7 +10,8 @@ import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react";
 import * as z from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from "../../lib/axios";
+import { useContextSelector } from "use-context-selector";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -22,6 +23,13 @@ const newTransactionFormSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 
 export function NewTransactionModal() {
+  const createTransaction = useContextSelector(
+    TransactionsContext,
+    (context) => {
+      return context.createTransaction;
+    },
+  );
+
   const {
     control,
     register,
@@ -33,14 +41,15 @@ export function NewTransactionModal() {
   });
 
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    const { category, description, price, type } = data;
-    await api.post("/transactions", {
+    const { description, price, category, type } = data;
+
+    await createTransaction({
       description,
-      category,
       price,
+      category,
       type,
-      createdAt: new Date(),
     });
+
     reset();
   }
 
@@ -107,7 +116,11 @@ export function NewTransactionModal() {
           />
 
           <button type="submit" disabled={isSubmitting}>
-            Cadastrar
+            {isSubmitting ? (
+              <span>Cadastrando...</span>
+            ) : (
+              <span>Cadastrar</span>
+            )}
           </button>
         </form>
       </Content>
