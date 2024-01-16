@@ -47,6 +47,38 @@
       "type": "outcome",
       "createdAt": "2022-07-30T13:38:57.560Z",
       "id": 6
+    },
+    {
+      "description": "água ",
+      "category": "moradia",
+      "price": 100,
+      "type": "outcome",
+      "createdAt": "2024-01-16T11:20:42.009Z",
+      "id": 7
+    },
+    {
+      "description": "água ",
+      "category": "moradia",
+      "price": 150,
+      "type": "outcome",
+      "createdAt": "2024-01-16T11:24:07.281Z",
+      "id": 8
+    },
+    {
+      "description": "iogurte ",
+      "price": 10,
+      "category": "alimentação",
+      "type": "outcome",
+      "createdAt": "2024-01-16T12:05:16.346Z",
+      "id": 9
+    },
+    {
+      "description": "maçã",
+      "price": 10,
+      "category": "alimentação",
+      "type": "outcome",
+      "createdAt": "2024-01-16T12:07:42.373Z",
+      "id": 10
     }
   ]
 }
