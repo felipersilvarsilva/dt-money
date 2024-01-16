@@ -36,7 +36,7 @@ export function TransactionsProvider({ children }: TransactionProviderProps) {
   const fetchTransactions = useCallback(async (query?: string) => {
     const response = await api.get("transactions", {
       params: {
-        _sort: "created_at",
+        _sort: "createdAt",
         _order: "desc",
         q: query,
       },

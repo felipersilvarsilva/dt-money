@@ -19,12 +19,18 @@ export function SearchForm() {
       return context.fetchTransactions;
     },
   );
-  const { register, handleSubmit } = useForm<SearchFormInputs>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+    reset,
+  } = useForm<SearchFormInputs>({
     resolver: zodResolver(searchFormSchema),
   });
 
   async function handleSearchTransactions(data: SearchFormInputs) {
     await fetchTransactions(data.query);
+    reset();
   }
   return (
     <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>
@@ -33,7 +39,7 @@ export function SearchForm() {
         placeholder="Busque por transações"
         {...register("query")}
       />
-      <button type="submit">
+      <button type="submit" disabled={isSubmitting}>
         <MagnifyingGlass size={20} /> Busca
       </button>
     </SearchFormContainer>
